@@ -149,9 +149,10 @@ def patient_detail(req,pk):
     
 
 def analiz_detail(req,pk):
-    analiz = Analiz.objects.get(id=pk)
+    patient = Patients.objects.get(id=pk)
+    analiz = Analiz.objects.filter(patient=patient)
 
-    return render(req,'analiz.html',{'analiz':analiz})
+    return render(req,'analiz.html',{'analizs':analiz,'patient':patient})
 
 
 def xolat(kt):
@@ -183,3 +184,4 @@ def variant_detail(req,pk):
     variant = Variant.objects.get(id=pk)
 
     return render(req,'variant.html',{'variant':variant})
+
