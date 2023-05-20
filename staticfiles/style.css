@@ -1,0 +1,17 @@
+body{
+  font-size: 18px;
+}
+tr,
+th,
+td {
+  border: 1px solid #545454;
+}
+.column {
+  padding: 10px;
+}
+.table-btn{
+  background: rgb(79, 79, 79);
+  color: aliceblue;
+}
+
+
