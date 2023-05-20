@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<table class="table">
+
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">vibor</th>
+            <th scope="col">lichenie</th>
+            <th scope="col">medikament</th>
+            <th scope="col">ed izm</th>
+            <th scope="col">sposob ispoleniya</th>
+            <th scope="col">peridichnost</th>
+            <th scope="col">doza naznacheniya</th>
+            <th scope="col">kolvo</th>
+            <th scope="col">sena</th>
+            <th scope="col">Analiz</th>
+        
+    </thead>
+
+
+<tbody>
+    {{object}}
+    {% for k in object.lichenies.all %}
+
+    <tr>
+        <td colspan="10">Linchnie variant : {{forloop.counter}} -- price:{{k.get_all_variants_price}}</td>
+    </tr>
+
+    {% for i in k.variants.all %}
+
+
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><a href="/variant/{{i.id}}">variant {{ forloop.parentloop.counter }}</a></td>
+        <td>{{ i.mediakament }}</td>
+        <td>{{ i.ed_iz }}</td>
+        <td>{{ i.sposob_ispolneniya }}</td>
+        <td>{{ i.periodnichnost }}</td>
+        <td>{{ i.doza_naznach }}</td>
+        <td>{{ i.kolvo_procedur }}</td>
+        <td>{{ i.price }}</td>
+        <td><a href="/analiz/{{i.id}}/">{{ i.analiz }}</a></td>
+    </tr>
+    {% endfor %}
+
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock content %}

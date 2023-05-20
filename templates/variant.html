@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">variant</th>
+            <th scope="col">mediakament</th>
+            <th scope="col">ed_iz</th>
+            <th scope="col">periodnichnost</th>
+            <th scope="col">doza_naznach</th>
+            <th scope="col">kolvo_procedur</th>
+            <th scope="col">sposob_ispolneniya</th>
+            <th scope="col">price</th>
+            <!-- <th scope="col">neu_3</th> -->
+            <!-- <th scope="col">lym_1</th> -->
+            <!-- <th scope="col">lym_2</th> -->
+            <!-- <th scope="col">lym_3</th> -->
+
+
+    </thead>
+
+
+    <tbody>
+
+
+        <tr>
+            <!-- <td><input type="checkbox"  name = "selected_items" value="{{i.id}}"></td>x     -->
+            <!-- <td><a href="/variant/{{i.id}}">variant {{ forloop.parentloop.counter }}</a></td> -->
+            <td>{{ variant.lechenie}}</td>
+            <td>{{ variant.mediakament}}</td>
+            <td>{{ variant.ed_iz}}</td>
+            <td>{{ variant.periodnichnost}}</td>
+            <td>{{ variant.doza_naznach}}</td>
+            <td>{{ variant.kolvo_procedur}}</td>
+            <td>{{ variant.sposob_ispolneniya}}</td>
+            <td>{{ variant.price}}</td>
+
+
+            <!-- <td><a href="/analiz/{{i.id}}/">{{ i.analiz }}</a></td> -->
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+{% endblock content %}

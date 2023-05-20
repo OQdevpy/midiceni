@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Виды лечение</h1>
+  <form method="get">
+    <label for="patient_id">Patient ID:</label>
+    <input type="text" id="patient_id" name="patient_id" value="{{ request.GET.patient_id }}">
+    <button type="submit">Filter</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Patient</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Count Procedure</th>
+        <th>Analysis</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for treatment in treatments %}
+        <tr>
+          <td>{{ treatment.title }}</td>
+          <td>{{ treatment.patient.full_name }}</td>
+          <td>{{ treatment.description }}</td>
+          <td>{{ treatment.price }}</td>
+          <td>{{ treatment.count_procedure }}</td>
+          <td>{{ treatment.analysis }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No treatments found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

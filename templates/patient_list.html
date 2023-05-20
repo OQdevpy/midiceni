@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список пациентов{% endblock %}
+{% block content %}
+<form method="get" class="patient-filter-form">
+  {{ form.as_p }}
+  <button type="submit">Фильтровать</button>
+
+
+<table>
+  <thead>
+    <tr>
+      <th><input type="checkbox" checked ></th>
+      <th><input class="table-input" type="text" name="full_name" placeholder="ФИО" ></th>
+      <th><input class="table-input" type="text" name="gender" placeholder="Пол" ></th>
+      <th><input class="table-input" type="text" name="age" placeholder="Возраст" ></th>
+      <th><input class="table-input" type="text" name="simtom" placeholder="Гастро -симптомы" ></th>
+      <th><input class="table-input" type="text" name="kd" placeholder="К\Д" ></th>
+      <th><input class="table-input" type="text" name="anketa" placeholder="Прошли анкетирование" ></th>
+      <th><input class="table-input" type="text" name="start_date" placeholder="Поступил" ></th>
+      <th><input class="table-input" type="text" name="end_date" placeholder="Выписка" ></th>
+      <th><input class="table-input" type="text" name="do_gos" placeholder=" До госпитализации" ></th>
+      <th><input class="table-input" type="text" name="one_month" placeholder="1 мес" ></th>
+      <th><input class="table-input" type="text" name="two_month" placeholder="2 мес" ></th>
+      <th><input class="table-input" type="text" name="three_month" placeholder="3 мес" ></th>
+      <th><input class="table-input" type="text" name="four_month" placeholder="4 мес" ></th>
+      <th><input class="table-input" type="text" name="five_month" placeholder="5 мес" ></th>
+      <th><input class="table-input" type="text" name="six_month" placeholder="6 мес" ></th>
+      <th><input class="table-input" type="text" name="dead" placeholder="Причина смерти" ></th>
+      <th><button class="table-btn">submit</button></th>
+    </tr>
+  </form>
+  </thead>
+  <tbody>
+    {% for patient in patients %}
+    <tr>
+      <td><span><input type="checkbox" ></span></td>
+       <td><a href="{% url 'patient_detail' patient.id %}">{{ patient.full_name }}</a></td>
+
+
+        <td><span class="column">{{ patient.gender }}</span></td>
+        <td><span class="column">{{ patient.age }}</span></td>
+        <td><span class="column">{{ patient.simtom }}</span></td>
+        <td><span class="column">{{ patient.kd }}</span></td>
+        <td><span class="column">{{ patient.anketa }}</span></td>
+        <td><span class="column">{{ patient.start_date }}</span></td>
+        <td><span class="column">{{ patient.end_date }}</span></td>
+        <td><span class="column">{{ patient.do_gos }}</span></td>
+        <td><span class="column">{{ patient.one_month }}</span></td>
+        <td><span class="column">{{ patient.two_month }}</span></td>
+        <td><span class="column">{{ patient.three_month }}</span></td>
+        <td><span class="column">{{ patient.four_month }}</span></td>
+        <td><span class="column">{{ patient.five_month }}</span></td>
+        <td><span class="column">{{ patient.six_month }}</span></td>
+        <td><span class="column">{{ patient.dead }}</span></td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">Пациенты не найдены.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

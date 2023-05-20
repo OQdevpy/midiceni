@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h1 class="patient-name"><strong>ФИО:</strong> {{ object.full_name }} </h1>
+<p><strong>Возраст:</strong> {{ object.age }}</p>
+<p><strong>Гастро -симптомы:</strong> {{ object.simtom }}</p>
+<p><strong>Анкета:</strong> {{ object.anketa }}</p>
+<p><strong>Ревматологические симптомы:</strong> {{ object.rev_simtom }}</p>
+<p><strong>Поступил:</strong> {{ object.start_date }}</p>
+<p><strong>Выписка:</strong> {{ object.end_date }}</p>
+<p><strong>КД:</strong> {{ object.kd }}</p>
+<p><strong>До госпитализации:</strong> {{ object.do_gos }}</p>
+<p><strong>ПАО:</strong> {{ object.pao }}</p>
+<p><strong>ИВЛ:</strong> {{ object.ivl }}</p>
+<p><strong>Исход:</strong> {{ object.isxod }}</p>
+<p><strong>Умер:</strong> {{ object.dead }}</p>
+<p><strong>1 месяц:</strong> {{ object.one_month }}</p>
+<p><strong>2 месяц:</strong> {{ object.two_month }}</p>
+<p><strong>3 месяц:</strong> {{ object.three_month }}</p>
+<p><strong>4 месяц:</strong> {{ object.four_month }}</p>
+<p><strong>5 месяц:</strong> {{ object.five_month }}</p>
+<p><strong>6 месяц:</strong> {{ object.six_month }}</p>
+
+<form action="" method="get">
+
+    <input type="date" name="date">
+    <button type="submit">search</button>
+</form>
+
+<form method="post">
+    {% csrf_token %}
+    <table class="table">
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">vibor</th>
+                <th scope="col">variant</th>
+                <th scope="col">variant content</th>
+                <th scope="col">sena</th>
+
+        </thead>
+
+
+        <tbody>
+            {% for k in lichenies %}
+            {{k.licenie.variants.all}}
+            <tr>
+                <td colspan="10"><a href="/lichenie/{{k.id}}">Linchnie  {{forloop.counter}} --<span style="color:red">xolati:{{k.licenie}}</span>-- price:{{k.get_all_variants_price}}</a></td>
+            </tr>
+
+            {% for i in k.licenie.variants.all %}
+
+
+
+            {% if i.id in variants %}
+            <tr>
+                <td><input type="checkbox" name="selected_items" value="{{i.id}}"></td>
+                <td><a href="/variant/{{i.id}}">variant {{ forloop.counter }}</a></td>
+                <td>{{ i.sxema }}</td>
+                <td>{{ i.price }}</td>
+                <!-- <td><a href="/analiz/{{i.analiz.id}}/">{{ i.analiz }}</a></td> -->
+            </tr>
+
+
+            {% endif %}
+
+            {% endfor %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" style="margin-left: 10px;">Delete Selected</button>
+</form>
+
+{% endblock %}

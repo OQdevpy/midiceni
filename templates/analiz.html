@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <table class="table">
+    
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">RBC_1</th>
+                <th scope="col">RBC_2</th>
+                <th scope="col">RBC_3</th>
+                <th scope="col">wbc_1</th>
+                <th scope="col">wbc_2</th>
+                <th scope="col">wbc_3</th>
+                <th scope="col">neu_1</th>
+                <th scope="col">neu_2</th>
+                <th scope="col">neu_3</th>
+                <th scope="col">lym_1</th>
+                <th scope="col">lym_2</th>
+                <th scope="col">lym_3</th>
+
+            
+        </thead>
+    
+    
+    <tbody>
+        
+        
+        <tr>
+            <!-- <td><input type="checkbox"  name = "selected_items" value="{{i.id}}"></td>x     -->
+            <!-- <td><a href="/variant/{{i.id}}">variant {{ forloop.parentloop.counter }}</a></td> -->
+            <td>{{ analiz.RBC_1 }}</td>
+            <td>{{ analiz.RBC_2 }}</td>
+            <td>{{ analiz.RBC_3 }}</td>
+            <td>{{ analiz.wbc_1 }}</td>
+            <td>{{ analiz.wbc_2 }}</td>
+            <td>{{ analiz.wbc_3 }}</td>
+            <td>{{ analiz.neu_1 }}</td>
+            <td>{{ analiz.neu_2 }}</td>
+            <td>{{ analiz.neu_3 }}</td>
+            <td>{{ analiz.lym_1 }}</td>
+            <td>{{ analiz.lym_2 }}</td>
+            <td>{{ analiz.lym_3 }}</td>
+
+            <!-- <td><a href="/analiz/{{i.id}}/">{{ i.analiz }}</a></td> -->
+        </tr>
+        
+          
+    </tbody>
+    </table>
+    
+
+
+
+
+
+
+{% endblock content %}
+    

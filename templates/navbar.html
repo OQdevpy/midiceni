@@ -1,0 +1,56 @@
+<style>
+    nav {
+        padding: 20px;
+        background-color: #4343ff;
+        color: aliceblue;
+        margin-bottom: 20px;
+    }
+
+    .nav-list {
+        display: inline-flex;
+
+    }
+
+    .nav-list li {
+        display: inline;
+        margin-left: 20px;
+    }
+
+    .nav-list li a {
+        color: aliceblue;
+    }
+</style>
+
+<nav>
+    <ul class="nav-list">
+        <li>
+            <a href="/">
+
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'patient_list' %}">
+                Пациенты
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'patient_create' %}">
+                Добавить пациента
+            </a>
+        </li>
+    </ul>
+    <ul class="nav-list" style="float: right">
+        {% if request.user.is_authenticated %}
+            <li>
+                {{ request.user }}
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'login' %}">Login</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
