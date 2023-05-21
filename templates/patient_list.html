@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load params_tags %}
 {% block title %}Список пациентов{% endblock %}
 {% block content %}
 <form method="get" class="patient-filter-form">
   {{ form.as_p }}
-  <button type="submit">Фильтровать</button>
+
 
 
 <table>
@@ -27,7 +28,7 @@
       <th><input class="table-input" type="text" name="five_month" placeholder="5 мес" ></th>
       <th><input class="table-input" type="text" name="six_month" placeholder="6 мес" ></th>
       <th><input class="table-input" type="text" name="dead" placeholder="Причина смерти" ></th>
-      <th><button class="table-btn">submit</button></th>
+      <th><button type="submit">Фильтровать</button></th>
     </tr>
   </form>
   </thead>
@@ -54,12 +55,42 @@
         <td><span class="column">{{ patient.six_month }}</span></td>
         <td><span class="column">{{ patient.dead }}</span></td>
     </tr>
+
     {% empty %}
     <tr>
       <td colspan="5">Пациенты не найдены.</td>
     </tr>
     {% endfor %}
+
   </tbody>
 </table>
+                <ul class="paginator">
 
+
+                    {% if page_obj.has_other_pages %}
+
+
+                    {% if page_obj.has_previous %}
+<!--                    <li><a href="?page={{ page_obj.previous_page_number }}"><</a></li>-->
+                    <li><a href="?{% url_replace page=page_obj.previous_page_number %}"><</a></li>
+                    {% endif %}
+
+                    {% for i in page_obj.paginator.page_range %}
+
+                    {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }}</span></li>
+                    {% elif i > page_obj.number|add:-2 and i < page_obj.number|add:2 %}
+<!--                    <li><span><a href="?page={{ i }}">{{ i }}</a></span></li>-->
+                    <li><span><a href="?{% url_replace page=i %}">{{ i }}</a></span></li>
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+<!--                    <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>-->
+                    <li><a href="?{% url_replace page=page_obj.next_page_number %}">&gt;</a></li>
+                    {% endif %}
+
+                    {% endif %}
+                </ul>
 {% endblock %}

@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from apps.patient.filterucn import toifa
 
@@ -13,76 +14,45 @@ from .forms import PatientFilterForm
 from .models import KT, Analiz, Crp_Rbc, Lechenie, Licenie, Patients, Variant
 
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 class PatientList(ListView):
     model = Patients
     context_object_name = "patients"
     template_name = "patient_list.html"
-    # paginate_by =
     form_class = PatientFilterForm
+    paginate_by = 50
 
     def get_queryset(self):
         queryset = super().get_queryset()
-
         form = self.form_class(self.request.GET)
+
         if form.is_valid():
-            full_name = form.cleaned_data.get("full_name")
-            gender = form.cleaned_data.get("gender")
-            age = form.cleaned_data.get("age")
-            simtom = form.cleaned_data.get("simtom")
-            kd = form.cleaned_data.get("kd")
-            anketa = form.cleaned_data.get("anket")
-            start_date = form.cleaned_data.get("start_date")
-            end_date = form.cleaned_data.get("end_date")
-            do_gos = form.cleaned_data.get("do_gos")
-            one_month = form.cleaned_data.get("one_month")
-            two_month = form.cleaned_data.get("two_month")
-            three_month = form.cleaned_data.get("three_month")
-            four_month = form.cleaned_data.get("four_month")
-            five_month = form.cleaned_data.get("five_month")
-            six_month = form.cleaned_data.get("six_month")
-            dead = form.cleaned_data.get("dead")
+            filter_fields = [
+                ("full_name__icontains", "full_name"),
+                ("gender", "gender"),
+                ("age", "age"),
+                ("simtom", "simtom"),
+                ("kd", "kd"),
+                ("anketa", "anketa"),
+                ("start_date__gte", "start_date"),
+                ("end_date__lte", "end_date"),
+                ("do_gos", "do_gos"),
+                ("one_month", "one_month"),
+                ("two_month", "two_month"),
+                ("three_month", "three_month"),
+                ("four_month", "four_month"),
+                ("five_month", "five_month"),
+                ("six_month", "six_month"),
+                ("dead", "dead")
+            ]
 
-            if full_name:
-                queryset = queryset.filter(full_name__icontains=full_name)
-            if gender:
-                queryset = queryset.filter(gender=gender)
-            if age:
-                queryset = queryset.filter(age=age)
-            if simtom:
-                queryset = queryset.filter(simtom=simtom)
-            if kd:
-                queryset = queryset.filter(kd=kd)
-            if anketa:
-                queryset = queryset.filter(anketa=anketa)
-            if start_date:
-                queryset = queryset.filter(start_date__gte=start_date)
-
-            if end_date:
-                queryset = queryset.filter(end_date__lte=end_date)
-
-            if do_gos:
-                queryset = queryset.filter(do_gos=do_gos)
-            if one_month:
-                queryset = queryset.filter(one_month=one_month)
-            if two_month:
-                queryset = queryset.filter(two_month=two_month)
-
-            if three_month:
-                queryset = queryset.filter(three_month=three_month)
-
-            if four_month:
-                queryset = queryset.filter(four_month=four_month)
-
-            if five_month:
-                queryset = queryset.filter(five_month=five_month)
-
-            if six_month:
-                queryset = queryset.filter(six_month=six_month)
-
-            if dead:
-                queryset = queryset.filter(dead=dead)
-
+            for field, form_field_name in filter_fields:
+                value = form.cleaned_data.get(form_field_name)
+                if value:
+                    queryset = queryset.filter(**{field: value})
         return queryset
+
 
 
 class PatientCreate(CreateView):
@@ -123,6 +93,7 @@ class PatientDetail(DetailView):
 
 
 def patient_detail(req,pk):
+
     patient = Patients.objects.get(id=pk)
     lichenie = Lechenie.objects.filter(patient_id=patient)
     variants = Variant.objects.filter(lichenie=lichenie.first().licenie)

@@ -5,7 +5,7 @@ a<!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Snippet - GoSNippets</title>
+    <title>Регистрация</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -20,7 +20,7 @@ a<!DOCTYPE html>
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Register</h3>
+                        <h3 class="pt-3 font-weight-bold">Регистрация</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form action="{% url 'register' %}" method="POST">
@@ -29,7 +29,7 @@ a<!DOCTYPE html>
                             <div class="form-group py-2">
                                 <div class="input-field">
                                     <span class="far fa-user p-2"></span>
-                                    <input type="text" name="username" placeholder="First name" required />
+                                    <input type="text" name="username" placeholder="имя пользователя" required />
                                     <!-- {{ form.username }} -->
                                 </div>
                             </div>
@@ -37,12 +37,12 @@ a<!DOCTYPE html>
                             <div class="form-group py-2">
                                 <div class="input-field">
                                     <span class="far fa-user p-2"></span>
-                                    <input type="text" name="phone_number" placeholder="Enter your phone number" required />
+                                    <input type="text" name="phone_number" placeholder="Телефон номер" required />
                                     <!-- {{ form.phone_number }} -->
                                 </div>
                             </div>
                             <div class="form-group py-2">
-                                <label for="">Choose role</label>
+                                <label for="">Выбрать роль</label>
                                 {{ form.user_roles }}
                                 <!-- <div class="input-field">
                                     <span class="far fa-user p-2"></span>
@@ -58,21 +58,21 @@ a<!DOCTYPE html>
                             <div class="form-group py-1 pb-2">
                                 <div class="input-field">
                                     <span class="fas fa-lock px-2"></span>
-                                    <input type="password" name="password1" placeholder="Enter your Password" required />
+                                    <input type="password" name="password1" placeholder="Введите ваш пароль" required />
                                     <!-- {{ form.password1 }} -->
 
                                 </div>
                                 <div class="form-group py-1 pb-2 mt-4">
                                     <div class="input-field"> <span class="fas fa-lock px-2"></span>
-                                        <input type="password" name="password2" placeholder="Confirm your Password" required>
+                                        <input type="password" name="password2" placeholder="Подтвердите ваш пароль" required>
                                         <!-- {{ form.password2 }} -->
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary btn-block mt-3" type="submit">Sign up</button>
+                            <button class="btn btn-primary btn-block mt-3" type="submit">Зарегистрироваться</button>
                             <div class="text-center pt-4 text-muted">
-                                Have an account? <a href="{% url 'login' %}">Login in</a>
+                                Есть аккаунт? <a href="{% url 'login' %}">Войти в систему</a>
                             </div>
                         </form>
                     </div>
