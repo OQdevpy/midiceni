@@ -1,9 +1,19 @@
 <style>
+    body{
+        background-color: #eeeeee;
+        padding-top: 84px   ;
+    }
     nav {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        border-bottom: 1px solid #ccc;
         padding: 20px;
-        background-color: #4343ff;
-        color: aliceblue;
+        color:#000000;
         margin-bottom: 20px;
+        font-size: 18px;
+        background-color: #eeeeee;
     }
 
     .nav-list {
@@ -17,7 +27,8 @@
     }
 
     .nav-list li a {
-        color: aliceblue;
+        color: #000000;
+        font-size: 18px;
     }
 </style>
 
@@ -33,11 +44,6 @@
                 Пациенты
             </a>
         </li>
-        <li>
-            <a href="{% url 'patient_create' %}">
-                Добавить пациента
-            </a>
-        </li>
     </ul>
     <ul class="nav-list" style="float: right">
         {% if request.user.is_authenticated %}
@@ -45,11 +51,11 @@
                 {{ request.user }}
             </li>
             <li>
-                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'logout' %}">Выйти</a>
             </li>
         {% else %}
             <li>
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'login' %}">Авторизоваться</a>
             </li>
         {% endif %}
     </ul>

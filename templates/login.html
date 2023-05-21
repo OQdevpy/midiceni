@@ -5,7 +5,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Snippet - GoSNippets</title>
+    <title>Логин</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -20,25 +20,25 @@
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
+                        <h3 class="pt-3 font-weight-bold">Авторизоваться</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group py-2">
                                 <div class="input-field"> <span class="far fa-user p-2"></span>
-                                    <input type="text" name="username" placeholder="First name" required>
+                                    <input type="text" name="username" placeholder="имя пользователя" required>
                                 </div>
                             </div>
                             <div class="form-group py-1 pb-2">
                                 <div class="input-field"> <span class="fas fa-lock px-2"></span>
-                                    <input type="password" name="password" placeholder="Enter your Password" required>
+                                    <input type="password" name="password" placeholder="Введите ваш пароль" required>
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary btn-block mt-3" type="submit">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have an account? <a
-                                    href="{% url 'register' %}">Sign up</a>
+                            <button class="btn btn-primary btn-block mt-3" type="submit">Авторизоваться</button>
+                            <div class="text-center pt-4 text-muted">Нет учетной записи? <a
+                                    href="{% url 'register' %}">Зарегистрироваться</a>
                             </div>
                         </form>
                     </div>

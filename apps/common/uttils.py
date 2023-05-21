@@ -1,4 +1,5 @@
 import xlrd
+from russian_names import RussianNames
 
 from apps.patient.models import KT, Analiz, Crp_Rbc, Patients
 
@@ -129,3 +130,10 @@ def import_data4(filepath):
             crp=crp,
             wbc=wbc,  
         )
+
+
+
+# wbcdef create_names_patients():
+#
+# # a=RussianNames(gender=0).get_person()
+#

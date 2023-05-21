@@ -3,31 +3,43 @@
 
 {% block content %}
 
+    <div class="row">
+        <div class="left">
+
 
 <h1 class="patient-name"><strong>ФИО:</strong> {{ object.full_name }} </h1>
-<p><strong>Возраст:</strong> {{ object.age }}</p>
-<p><strong>Гастро -симптомы:</strong> {{ object.simtom }}</p>
-<p><strong>Анкета:</strong> {{ object.anketa }}</p>
-<p><strong>Ревматологические симптомы:</strong> {{ object.rev_simtom }}</p>
-<p><strong>Поступил:</strong> {{ object.start_date }}</p>
-<p><strong>Выписка:</strong> {{ object.end_date }}</p>
-<p><strong>КД:</strong> {{ object.kd }}</p>
-<p><strong>До госпитализации:</strong> {{ object.do_gos }}</p>
-<p><strong>ПАО:</strong> {{ object.pao }}</p>
-<p><strong>ИВЛ:</strong> {{ object.ivl }}</p>
-<p><strong>Исход:</strong> {{ object.isxod }}</p>
-<p><strong>Умер:</strong> {{ object.dead }}</p>
-<p><strong>1 месяц:</strong> {{ object.one_month }}</p>
-<p><strong>2 месяц:</strong> {{ object.two_month }}</p>
-<p><strong>3 месяц:</strong> {{ object.three_month }}</p>
-<p><strong>4 месяц:</strong> {{ object.four_month }}</p>
-<p><strong>5 месяц:</strong> {{ object.five_month }}</p>
-<p><strong>6 месяц:</strong> {{ object.six_month }}</p>
-<p> <a href="/analiz/{{object.id}}"> Analiz</a></p>
-<form action="" method="get">
+<p class="detail"><strong>Возраст:</strong> {{ object.age }}</p>
+<p class="detail"><strong>Гастро -симптомы:</strong> {{ object.simtom }}</p>
+<p class="detail"><strong>Анкета:</strong> {{ object.anketa }}</p>
+<p class="detail"><strong>Ревматологические симптомы:</strong> {{ object.rev_simtom }}</p>
+<p class="detail"><strong>Поступил:</strong> {{ object.start_date }}</p>
+<p class="detail"><strong>Выписка:</strong> {{ object.end_date }}</p>
+<p class="detail"><strong>КД:</strong> {{ object.kd }}</p>
+<p class="detail"><strong>До госпитализации:</strong> {{ object.do_gos }}</p>
+<p class="detail"><strong>ПАО:</strong> {{ object.pao }}</p>
+<p class="detail"><strong>ИВЛ:</strong> {{ object.ivl }}</p>
+<p class="detail"><strong>Исход:</strong> {{ object.isxod }}</p>
+<p class="detail"><strong>Умер:</strong> {{ object.dead }}</p>
+<p class="detail"><strong>1 месяц:</strong> {{ object.one_month }}</p>
+<p class="detail"><strong>2 месяц:</strong> {{ object.two_month }}</p>
+<p class="detail"><strong>3 месяц:</strong> {{ object.three_month }}</p>
+<p class="detail"><strong>4 месяц:</strong> {{ object.four_month }}</p>
+<p class="detail"><strong>5 месяц:</strong> {{ object.five_month }}</p>
+<p class="detail"><strong>6 месяц:</strong> {{ object.six_month }}</p>
 
+
+        </div>
+        <div class="right">
+        <p class="right-detail"> <a href="/analiz/{{object.id}}"> Анализ данного пациента</a></p>
+        </div>
+
+
+
+</div>
+
+<form class="detail-form" action="" method="get">
     <input type="date" name="date">
-    <button type="submit">search</button>
+    <button type="submit">Поиск</button>
 </form>
 
 <form method="post">
@@ -36,19 +48,18 @@
 
         <thead class="thead-dark">
             <tr>
-                <th scope="col">vibor</th>
-                <th scope="col">variant</th>
-                <th scope="col">variant content</th>
-                <th scope="col">sena</th>
+                <th scope="col">Выбор</th>
+                <th scope="col">Вариант</th>
+                <th scope="col">Вариант схема</th>
+                <th scope="col">Цена</th>
 
         </thead>
 
 
         <tbody>
             {% for k in lichenies %}
-            {{k.licenie.variants.all}}
             <tr>
-                <td colspan="10"><a href="/lichenie/{{k.id}}">Linchnie  {{forloop.counter}} --<span style="color:red">xolati:{{k.licenie}}</span>-- price:{{k.get_all_variants_price}}</a></td>
+                <td colspan="10"><a href="">Личение  {{forloop.counter}} --<span style="color:red">состояние:{{k.licenie}}</span>-- Общая сумма:{{k.get_all_variants_price}}</a></td>
             </tr>
 
             {% for i in k.licenie.variants.all %}
@@ -58,7 +69,7 @@
             {% if i.id in variants %}
             <tr>
                 <td><input type="checkbox" name="selected_items" value="{{i.id}}"></td>
-                <td><a href="/variant/{{i.id}}">variant {{ forloop.counter }}</a></td>
+                <td><a href="/variant/{{i.id}}">Вариант {{ forloop.counter }}</a></td>
                 <td>{{ i.sxema }}</td>
                 <td>{{ i.price }}</td>
                 <!-- <td><a href="/analiz/{{i.analiz.id}}/">{{ i.analiz }}</a></td> -->
@@ -72,7 +83,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <button type="submit" style="margin-left: 10px;">Delete Selected</button>
+    <button type="submit" style="margin-left: 10px;">Удалить выбранные</button>
 </form>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 body{
   font-size: 18px;
+    background: linear-gradient(to top, #c9c9ff 50%, #9090fa 90%) no-repeat;
 }
 tr,
 th,
@@ -13,5 +14,77 @@ td {
   background: rgb(79, 79, 79);
   color: aliceblue;
 }
+td,th,input,input::placeholder{
+  padding: 2px 10px;
+  color: #ffffff;
+  background: transparent;
+}
+input,input::placeholder{
+  border: 1px solid #545454;
+  background: #c9c9ff;
+  color: #1b1b1b;
+}
+table{
+    background: linear-gradient(to top, #c9c9ff 50%, #9090fa 90%) no-repeat;
+}
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  list-style: none;
 
+}
+
+.paginator li {
+  margin: 0 10px;
+  padding: 5px 10px;
+  border: 1px solid #545454;
+  cursor: pointer;
+}
+
+.paginator li.active {
+  background: #545454;
+  color: #ffffff;
+}
+
+.detail{
+  padding-left: 15px;
+  font-size: 18px;
+}
+.detail strong{
+  padding: 4px;
+  border: 2px solid #545454;
+}
+.patient-name{
+  padding: 10px;
+}
+
+.detail-form {
+  padding-left: 20px;
+}
+
+.row{
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.right{
+  padding-top: 200px;
+  padding-right: 700px;
+  color:black;
+}
+.right-detail{
+  background: #eee;
+  padding: 10px 20px;
+  border: 1px solid #545454;
+  border-radius: 5px;
+  background: #eeeeee;
+
+}
+.right-detail a{
+color: #1b1b1b;
+
+}
 
